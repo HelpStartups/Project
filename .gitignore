@@ -1,0 +1,20 @@
+# Ignore node_modules in frontend
+/frontend/node_modules/
+
+# Ignore build output of React frontend
+/frontend/build/
+
+# Ignore Python virtual environment
+/backend/venv/
+backend/__pycache__/
+backend/*.pyc
+
+# Ignore Flask environment files
+/backend/.env
+/frontend/.env
+
+# MacOS and system files
+.DS_Store
+
+# Log files
+*.log
