@@ -7,16 +7,30 @@ const LoginPage = () => {
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!otpSent) {
-      // Trigger backend to send OTP
-      console.log("Sending OTP to:", email);
+      // Simulate sending OTP (frontend doesn't actually do this in current backend)
       setOtpSent(true);
     } else {
-      // Final login submission with OTP
-      console.log("Verifying credentials with OTP:", { email, password, otp });
+      try {
+        const response = await fetch("http://localhost:5000/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password, otp }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          alert("Login successful!");
+        } else {
+          alert(data.message);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Login failed!");
+      }
     }
   };
 
